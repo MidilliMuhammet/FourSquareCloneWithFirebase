@@ -13,6 +13,10 @@
 		72CC4D0E25F6BAF700D04E7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72CC4D0C25F6BAF700D04E7B /* Main.storyboard */; };
 		72CC4D1025F6BAF700D04E7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72CC4D0F25F6BAF700D04E7B /* Assets.xcassets */; };
 		72CC4D1325F6BAF700D04E7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72CC4D1125F6BAF700D04E7B /* LaunchScreen.storyboard */; };
+		72CC4D1D25F6C16F00D04E7B /* TableViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CC4D1C25F6C16F00D04E7B /* TableViewVC.swift */; };
+		72CC4D2425F6C1A700D04E7B /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CC4D2325F6C1A700D04E7B /* DetailsVC.swift */; };
+		72CC4D2725F6C1BC00D04E7B /* AddImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CC4D2625F6C1BC00D04E7B /* AddImageVC.swift */; };
+		72CC4D2A25F6C1D300D04E7B /* AddMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CC4D2925F6C1D300D04E7B /* AddMapVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		72CC4D0F25F6BAF700D04E7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72CC4D1225F6BAF700D04E7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		72CC4D1425F6BAF700D04E7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		72CC4D1C25F6C16F00D04E7B /* TableViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewVC.swift; sourceTree = "<group>"; };
+		72CC4D2325F6C1A700D04E7B /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
+		72CC4D2625F6C1BC00D04E7B /* AddImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageVC.swift; sourceTree = "<group>"; };
+		72CC4D2925F6C1D300D04E7B /* AddMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMapVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +67,10 @@
 				72CC4D0625F6BAF700D04E7B /* AppDelegate.swift */,
 				72CC4D0825F6BAF700D04E7B /* SceneDelegate.swift */,
 				72CC4D0A25F6BAF700D04E7B /* ViewController.swift */,
+				72CC4D1C25F6C16F00D04E7B /* TableViewVC.swift */,
+				72CC4D2325F6C1A700D04E7B /* DetailsVC.swift */,
+				72CC4D2625F6C1BC00D04E7B /* AddImageVC.swift */,
+				72CC4D2925F6C1D300D04E7B /* AddMapVC.swift */,
 				72CC4D0C25F6BAF700D04E7B /* Main.storyboard */,
 				72CC4D0F25F6BAF700D04E7B /* Assets.xcassets */,
 				72CC4D1125F6BAF700D04E7B /* LaunchScreen.storyboard */,
@@ -137,9 +149,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72CC4D1D25F6C16F00D04E7B /* TableViewVC.swift in Sources */,
 				72CC4D0B25F6BAF700D04E7B /* ViewController.swift in Sources */,
+				72CC4D2725F6C1BC00D04E7B /* AddImageVC.swift in Sources */,
 				72CC4D0725F6BAF700D04E7B /* AppDelegate.swift in Sources */,
 				72CC4D0925F6BAF700D04E7B /* SceneDelegate.swift in Sources */,
+				72CC4D2425F6C1A700D04E7B /* DetailsVC.swift in Sources */,
+				72CC4D2A25F6C1D300D04E7B /* AddMapVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +303,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 32Z3ATUV54;
 				INFOPLIST_FILE = FourSquareCloneFirebase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -305,6 +322,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 32Z3ATUV54;
 				INFOPLIST_FILE = FourSquareCloneFirebase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
