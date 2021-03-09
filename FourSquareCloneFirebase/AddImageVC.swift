@@ -26,7 +26,6 @@ class AddImageVC: UIViewController, UIImagePickerControllerDelegate & UINavigati
         imageViewAdd.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
         imageViewAdd.addGestureRecognizer(gestureRecognizer)
-
     }
     @IBAction func nextButtonClicked(_ sender: Any) {
         //alerts
@@ -37,7 +36,10 @@ class AddImageVC: UIViewController, UIImagePickerControllerDelegate & UINavigati
         } else if placeAtmosphereText.text == "" {
             self.makeAlert(messageInput: "Place atmosphere cannot be empty!")
         }
-        //upload
+        
+        //doing nothing now. we're gonna update next segue after press save!
+        
+        /*//upload
         else {
             let storage = Storage.storage()
             let storageReference = storage.reference()
@@ -74,10 +76,8 @@ class AddImageVC: UIViewController, UIImagePickerControllerDelegate & UINavigati
                     }
                 }
             }
-            
-            
-            
-        }
+        }*/
+        self.performSegue(withIdentifier: "toaddmapvc", sender: nil)
     }
     
     //alert func to use many times
@@ -103,6 +103,17 @@ class AddImageVC: UIViewController, UIImagePickerControllerDelegate & UINavigati
         self.dismiss(animated: true, completion: nil)
         //make button touchable after choose phote
         self.nextButtonOutlet.isEnabled = true
+    }
+    
+    //call the AddMapVC variables
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toaddmapvc" {
+            let destinationController = segue.destination as! AddMapVC
+            destinationController.name = nameText.text!
+            destinationController.placeType = placeTypeText.text!
+            destinationController.placeAtmosphere = placeAtmosphereText.text!
+            destinationController.image = imageViewAdd.image!
+        }
     }
     
 
