@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ns6-uT-B3E">
-                                <rect key="frame" x="48" y="199" width="318" height="34"/>
+                                <rect key="frame" x="48" y="235" width="318" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="krG-vD-ZiB"/>
                                 </constraints>
@@ -25,7 +25,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="75S-2A-DG3">
-                                <rect key="frame" x="48" y="241" width="318" height="34"/>
+                                <rect key="frame" x="48" y="277" width="318" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="WLM-X4-ZbE"/>
                                 </constraints>
@@ -33,7 +33,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="py5-it-dtl">
-                                <rect key="frame" x="71" y="313" width="110" height="66"/>
+                                <rect key="frame" x="71" y="349" width="110" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="ITp-9F-HnT"/>
                                     <constraint firstAttribute="height" constant="66" id="MgR-rq-ipR"/>
@@ -45,7 +45,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13u-FP-59t">
-                                <rect key="frame" x="233" y="313" width="110" height="66"/>
+                                <rect key="frame" x="233" y="349" width="110" height="66"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
@@ -53,7 +53,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Four Square Clone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8V-Ph-vMK">
-                                <rect key="frame" x="48" y="70" width="318" height="82"/>
+                                <rect key="frame" x="48" y="70" width="318" height="110"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -63,12 +63,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="py5-it-dtl" firstAttribute="baseline" secondItem="13u-FP-59t" secondAttribute="firstBaseline" id="JeF-ur-rIo"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="py5-it-dtl" secondAttribute="bottom" constant="483" id="ML2-i0-T9g"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="py5-it-dtl" secondAttribute="bottom" constant="447" id="ML2-i0-T9g"/>
                             <constraint firstItem="py5-it-dtl" firstAttribute="top" secondItem="75S-2A-DG3" secondAttribute="bottom" constant="38" id="Oyi-oV-dBL"/>
                             <constraint firstItem="d8V-Ph-vMK" firstAttribute="trailing" secondItem="ns6-uT-B3E" secondAttribute="trailing" id="SzL-bP-uEs"/>
                             <constraint firstItem="d8V-Ph-vMK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="48" id="TsA-LI-ppc"/>
                             <constraint firstItem="75S-2A-DG3" firstAttribute="top" secondItem="ns6-uT-B3E" secondAttribute="bottom" constant="8" id="Upp-j4-mDA"/>
-                            <constraint firstItem="ns6-uT-B3E" firstAttribute="top" secondItem="d8V-Ph-vMK" secondAttribute="bottom" constant="47" id="Utt-LA-MNP"/>
+                            <constraint firstItem="ns6-uT-B3E" firstAttribute="top" secondItem="d8V-Ph-vMK" secondAttribute="bottom" constant="55" id="Utt-LA-MNP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="13u-FP-59t" secondAttribute="trailing" constant="71" id="Vgv-dp-W0f"/>
                             <constraint firstItem="py5-it-dtl" firstAttribute="top" secondItem="13u-FP-59t" secondAttribute="top" id="WG4-qh-I2H"/>
                             <constraint firstItem="d8V-Ph-vMK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="26" id="Wah-0E-MS8"/>
@@ -328,7 +328,7 @@
         <!--Navigation Controller-->
         <scene sceneID="cEH-Jh-bU4">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="imy-bk-SFk" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="signedInPage" automaticallyAdjustsScrollViewInsets="NO" id="imy-bk-SFk" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lko-qS-TQA">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
