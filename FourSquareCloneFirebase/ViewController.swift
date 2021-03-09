@@ -15,8 +15,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
+    
     //sign in with existed user
     @IBAction func signinClicked(_ sender: Any) {
         if emailText.text != nil && passwordText.text != nil {
@@ -46,7 +47,6 @@ class ViewController: UIViewController {
                 }
             }
         }
-        
     }
     
     //alert func to use many times
@@ -56,9 +56,4 @@ class ViewController: UIViewController {
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)
     }
-    
-
-    
-    
 }
-

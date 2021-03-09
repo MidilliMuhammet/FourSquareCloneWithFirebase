@@ -11,11 +11,13 @@ import MapKit
 class AddMapVC: UIViewController {
     
     @IBOutlet weak var mapViewAdd: MKMapView!
+    @IBOutlet weak var saveButtonOutlet: UIButton!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         
     }
     
