@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import SDWebImage
 
 
 class DetailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
@@ -47,6 +48,8 @@ class DetailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
         nameLabel.text = chosenName
         placeTypeLabel.text = chosenPlaceType
         placeAtmosphereLabel.text = chosenPlaceAtmosphere
+        imageViewDetail.sd_setImage(with: URL(string : self.chosenImage))
+        
         //create pin
         let annotation = MKPointAnnotation()
         annotation.title = chosenName

@@ -275,8 +275,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="254"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="254" id="2AS-Wk-raw"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="414" id="G4H-VF-NIt"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="254" id="ISv-e9-ZOn"/>
                                     <constraint firstAttribute="width" constant="414" id="WVS-vX-qyp"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="254" id="bhp-bi-zER"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKj-cw-4Zm">
@@ -362,6 +364,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="ucL-8P-gd1"/>
         <segue reference="91D-lA-dfy"/>
     </inferredMetricsTieBreakers>
     <resources>
