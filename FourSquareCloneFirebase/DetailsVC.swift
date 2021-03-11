@@ -58,6 +58,7 @@ class DetailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
         
         
         
+        
 
         
     }
@@ -74,7 +75,7 @@ class DetailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
         mapViewDetail.setRegion(region, animated: true)
     }
     
-    //customize pin 
+    //customize pin
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         //do not show any pin on user location
         if annotation is MKUserLocation {
@@ -92,6 +93,23 @@ class DetailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
             pinView?.annotation = annotation
         }
         return pinView
+    }
+    
+    //after tap pin button, search callout
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let requestLocation = CLLocation(latitude: chosenLatitude, longitude: chosenLongitude)
+        //clousre
+        CLGeocoder().reverseGeocodeLocation(requestLocation) { (placemarks, error) in
+            if let placemark = placemarks {
+                if placemark.count > 0 {
+                    let newPlaceMark = MKPlacemark(placemark: placemark[0])
+                    let item = MKMapItem(placemark: newPlaceMark)
+                    item.name = self.chosenName
+                    let launchOptions = [MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving]
+                    item.openInMaps(launchOptions: launchOptions)
+                }
+            }
+        }
     }
     
 
