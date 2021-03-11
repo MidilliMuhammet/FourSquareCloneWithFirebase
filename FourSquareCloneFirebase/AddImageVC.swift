@@ -26,6 +26,8 @@ class AddImageVC: UIViewController, UIImagePickerControllerDelegate & UINavigati
         imageViewAdd.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
         imageViewAdd.addGestureRecognizer(gestureRecognizer)
+        
+        
     }
     @IBAction func nextButtonClicked(_ sender: Any) {
         //alerts
@@ -112,7 +114,7 @@ class AddImageVC: UIViewController, UIImagePickerControllerDelegate & UINavigati
             destinationController.name = nameText.text!
             destinationController.placeType = placeTypeText.text!
             destinationController.placeAtmosphere = placeAtmosphereText.text!
-            destinationController.image = imageViewAdd.image!
+            destinationController.photo = imageViewAdd.image!
         }
     }
     

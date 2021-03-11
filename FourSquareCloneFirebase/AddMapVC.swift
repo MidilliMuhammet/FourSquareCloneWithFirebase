@@ -16,16 +16,18 @@ class AddMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapViewAdd: MKMapView!
     @IBOutlet weak var saveButtonOutlet: UIButton!
+    @IBOutlet weak var cloneImageView: UIImageView!
     
     //variables
-    var name = ""
+    var name = String()
     var placeType = ""
     var placeAtmosphere = ""
-    var image = UIImage()
+    var photo = UIImage()
     var annotationLatitude = Double()
     var annotationLongitude = Double()
     var chosenLatitude = Double()
     var chosenLongitude = Double()
+    
     
     var locationManager = CLLocationManager()
 
@@ -46,20 +48,56 @@ class AddMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         let gestureRecognizerMap = UILongPressGestureRecognizer(target: self, action: #selector(chooseLocation(gestureRecognizerMap:)))
         gestureRecognizerMap.minimumPressDuration = 1.5 //sec
         mapViewAdd.addGestureRecognizer(gestureRecognizerMap)
-        
-        
-        
+        cloneImageView.image = photo
     }
-    
-   
-    
-    
-    
     
     @IBAction func saveButtonClicked(_ sender: Any) {
-        
-        
+        //update to firebase
+        if chosenLatitude == 0 && chosenLongitude == 0 {
+            self.makeAlert(messageInput: "Choose a location to add pin")
+        } else {
+            let storage = Storage.storage()
+            let storageReference = storage.reference()
+            //choosing folder if it is not existing it will create automaticilly
+            let mediaFolder = storageReference.child("photo")
+            //convert to data, 0.5 is compression rate
+            if let data = cloneImageView.image?.jpegData(compressionQuality: 0.5) {
+                //creating unique name as unique id
+                let uuid = UUID().uuidString
+                //save as jpeg
+                let imageReference = mediaFolder.child("\(uuid).jpeg")
+                imageReference.putData(data, metadata: nil) { (metadata, error) in
+                    if error != nil {
+                        self.makeAlert(messageInput: error?.localizedDescription ?? "Error!")
+                    } else {
+                        imageReference.downloadURL { (url, error) in
+                            if error == nil {
+                                //convert url to string
+                                let imageUrl = url?.absoluteString
+                                //database
+                                let firestoreDatabase = Firestore.firestore()
+                                var firestoreReference : DocumentReference? = nil
+                                let firestorePlace = ["imageUrl" : imageUrl!, "placename" : self.name, "placetype" : self.placeType, "placeatmosphere" : self.placeAtmosphere, "latitude" : self.chosenLatitude, "longitude" : self.chosenLongitude] as! [String : Any]
+                                firestoreReference = firestoreDatabase.collection("Places").addDocument(data: firestorePlace, completion: { (error) in
+                                    if error != nil {
+                                        self.makeAlert(messageInput: error?.localizedDescription ?? "Error!")
+                                    } else {
+                                        self.saveButtonOutlet.isEnabled = false
+                                        //if no error goes to tableviewvc
+                                        self.performSegue(withIdentifier: "totableviewvcaftersaved", sender: nil)
+                                        
+                                    }
+                                })
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        print(chosenLatitude)
+        print(chosenLongitude)
     }
+    
     //for gestureRecognizer
     @objc func chooseLocation(gestureRecognizerMap: UILongPressGestureRecognizer) {
         //if user press long
@@ -106,18 +144,16 @@ class AddMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     //after tap pin button, search callout to map
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if name != "" {
-            let requestLocation = CLLocation(latitude: annotationLatitude, longitude: annotationLongitude)
-            //closure
-            CLGeocoder().reverseGeocodeLocation(requestLocation) { (placemarks, error) in
-                if let placemark = placemarks {
-                    if placemark.count > 0 {
-                        let newPlaceMark = MKPlacemark(placemark: placemark[0])
-                        let item = MKMapItem(placemark: newPlaceMark)
-                        item.name = self.name
-                        let launchOptions = [MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving]
-                        item.openInMaps(launchOptions: launchOptions)
-                    }
+        let requestLocation = CLLocation(latitude: annotationLatitude, longitude: annotationLongitude)
+        //closure
+        CLGeocoder().reverseGeocodeLocation(requestLocation) { (placemarks, error) in
+            if let placemark = placemarks {
+                if placemark.count > 0 {
+                    let newPlaceMark = MKPlacemark(placemark: placemark[0])
+                    let item = MKMapItem(placemark: newPlaceMark)
+                    item.name = self.name
+                    let launchOptions = [MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving]
+                    item.openInMaps(launchOptions: launchOptions)
                 }
             }
         }
@@ -125,20 +161,22 @@ class AddMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     //update locations given as an array, search "didupdatelocation"
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if name == "" {
-            let location = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
-            //zoom level
-            let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-            //centre of map
-            let region = MKCoordinateRegion(center: location, span: span)
-            //setting region
-            mapViewAdd.setRegion(region, animated: true)
+        let location = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
+        //zoom level
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        //centre of map
+        let region = MKCoordinateRegion(center: location, span: span)
+        //setting region
+        mapViewAdd.setRegion(region, animated: true)
         }
+    
+    //alert func to use many times
+    func makeAlert(messageInput : String) {
+        let alert = UIAlertController(title: "Error!", message: messageInput, preferredStyle: UIAlertController.Style.alert)
+        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.destructive, handler: nil)
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
     }
     
     
-    
-    
-    
-
 }

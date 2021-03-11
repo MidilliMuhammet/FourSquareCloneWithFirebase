@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -95,7 +95,6 @@
 				D0185093305B41AAFA2A2A30 /* Pods-FourSquareCloneFirebase.debug.xcconfig */,
 				F66048A7A56DCC14C6CE5F19 /* Pods-FourSquareCloneFirebase.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
