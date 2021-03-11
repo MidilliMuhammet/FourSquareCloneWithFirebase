@@ -19,10 +19,17 @@ class TableViewVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     var userImageArray = [String]()
     var userLatitudeArray = [Double]()
     var userLongitudeArray = [Double]()
-    var documentIdArray = [String]()
+    var chosenName = ""
+    var chosenPlaceType = ""
+    var chosenPlaceAtmosphere = ""
+    var chosenImage = ""
+    var chosenLatitude = 0.00
+    var chosenLongitude = 0.00
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         getData()
         
@@ -35,8 +42,6 @@ class TableViewVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                 
         //logoutbutton
         navigationController?.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItem.Style.plain, target: self, action: #selector(logoutButtonClicked))
-        
-        print(userPlaceNameArray)
     }
     
    
@@ -84,12 +89,8 @@ class TableViewVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                     self.userImageArray.removeAll(keepingCapacity: false)
                     self.userLatitudeArray.removeAll(keepingCapacity: false)
                     self.userLongitudeArray.removeAll(keepingCapacity: false)
-                    self.documentIdArray.removeAll(keepingCapacity: false)
                     
                     for document in snapshot!.documents {
-                        if let documentId = document.documentID as? String {
-                            self.documentIdArray.append(documentId)
-                        }
                         if let placename = document.get("placename") as? String {
                             self.userPlaceNameArray.append(placename)
                         }
@@ -113,6 +114,30 @@ class TableViewVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                     self.tableView.reloadData()
                 }
             }
+        }
+    }
+    
+    //search "didselectrow", when selected a row, get the index
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        chosenName = userPlaceNameArray[indexPath.row]
+        chosenPlaceType = userPlaceTypeArray[indexPath.row]
+        chosenPlaceAtmosphere = userPlaceAtmosphereArray[indexPath.row]
+        chosenImage = userImageArray[indexPath.row]
+        chosenLatitude = userLatitudeArray[indexPath.row]
+        chosenLongitude = userLongitudeArray[indexPath.row]
+        performSegue(withIdentifier: "todetailsvc", sender: nil)
+    }
+    
+    //show the segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "todetailsvc" {
+            let destinationVC = segue.destination as! DetailsVC
+            destinationVC.chosenName = chosenName
+            destinationVC.chosenPlaceType = chosenPlaceType
+            destinationVC.chosenPlaceAtmosphere = chosenPlaceAtmosphere
+            destinationVC.chosenImage = chosenImage
+            destinationVC.chosenLatitude = chosenLatitude
+            destinationVC.chosenLongitude = chosenLongitude
         }
     }
 }
