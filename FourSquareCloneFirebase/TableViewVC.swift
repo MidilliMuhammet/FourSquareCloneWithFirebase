@@ -24,6 +24,8 @@ class TableViewVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getData()
+        
         //delegation
         tableView.delegate = self
         tableView.dataSource = self
@@ -34,7 +36,7 @@ class TableViewVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         //logoutbutton
         navigationController?.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItem.Style.plain, target: self, action: #selector(logoutButtonClicked))
         
-        getData()
+        print(userPlaceNameArray)
     }
     
    
@@ -70,7 +72,7 @@ class TableViewVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     //get data func
     func getData() {
         let fireStoreDatabase = Firestore.firestore()
-        fireStoreDatabase.collection("Places").order(by: "Places", descending: true).addSnapshotListener { (snapshot, error) in
+        fireStoreDatabase.collection("Places").addSnapshotListener { (snapshot, error) in
             if error != nil {
                 print(error?.localizedDescription)
             } else {
@@ -85,9 +87,9 @@ class TableViewVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                     self.documentIdArray.removeAll(keepingCapacity: false)
                     
                     for document in snapshot!.documents {
-                        let documentId = document.documentID
-                        self.documentIdArray.append(documentId)
-                        
+                        if let documentId = document.documentID as? String {
+                            self.documentIdArray.append(documentId)
+                        }
                         if let placename = document.get("placename") as? String {
                             self.userPlaceNameArray.append(placename)
                         }
