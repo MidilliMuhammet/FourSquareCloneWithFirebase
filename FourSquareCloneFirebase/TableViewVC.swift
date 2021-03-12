@@ -26,10 +26,8 @@ class TableViewVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     var chosenLatitude = 0.00
     var chosenLongitude = 0.00
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         getData()
         
@@ -43,9 +41,6 @@ class TableViewVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         //logoutbutton
         navigationController?.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItem.Style.plain, target: self, action: #selector(logoutButtonClicked))
     }
-    
-   
-    
     
     //require for tableview
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

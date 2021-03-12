@@ -29,8 +29,9 @@ class AddImageVC: UIViewController, UIImagePickerControllerDelegate & UINavigati
         
         //hiding keyboard when tap vc except for keyboard
         let hidingGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        
+        view.addGestureRecognizer(hidingGestureRecognizer)
     }
+    
     @IBAction func nextButtonClicked(_ sender: Any) {
         //alerts
         if nameText.text == "" {

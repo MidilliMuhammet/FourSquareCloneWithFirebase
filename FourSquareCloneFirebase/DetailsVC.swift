@@ -10,7 +10,6 @@ import MapKit
 import CoreLocation
 import SDWebImage
 
-
 class DetailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var imageViewDetail: UIImageView!
@@ -26,11 +25,8 @@ class DetailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
     var chosenImage = ""
     var chosenLatitude = 0.00
     var chosenLongitude = 0.00
-    
     var locationManager = CLLocationManager()
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,12 +54,6 @@ class DetailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
         let coordinate = CLLocationCoordinate2D(latitude: chosenLatitude, longitude: chosenLongitude)
         annotation.coordinate = coordinate
         mapViewDetail.addAnnotation(annotation)
-        
-        
-        
-        
-
-        
     }
     
     //update location
@@ -114,8 +104,4 @@ class DetailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
             }
         }
     }
-    
-
-    
-
 }

@@ -10,8 +10,6 @@ import MapKit
 import Firebase
 import CoreLocation
 
-
-
 class AddMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapViewAdd: MKMapView!
@@ -27,8 +25,6 @@ class AddMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     var annotationLongitude = Double()
     var chosenLatitude = Double()
     var chosenLongitude = Double()
-    
-    
     var locationManager = CLLocationManager()
 
     override func viewDidLoad() {
@@ -85,7 +81,6 @@ class AddMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
                                         self.saveButtonOutlet.isEnabled = false
                                         //if no error goes to tableviewvc
                                         self.performSegue(withIdentifier: "totableviewvcaftersaved", sender: nil)
-                                        
                                     }
                                 })
                             }
@@ -177,6 +172,4 @@ class AddMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)
     }
-    
-    
 }
