@@ -25,7 +25,8 @@ class TableViewVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     var chosenImage = ""
     var chosenLatitude = 0.00
     var chosenLongitude = 0.00
-
+    var documentIDArray = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -84,8 +85,11 @@ class TableViewVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                     self.userImageArray.removeAll(keepingCapacity: false)
                     self.userLatitudeArray.removeAll(keepingCapacity: false)
                     self.userLongitudeArray.removeAll(keepingCapacity: false)
+                    self.documentIDArray.removeAll(keepingCapacity: false)
                     
                     for document in snapshot!.documents {
+                        let documentId = document.documentID
+                        self.documentIDArray.append(documentId)
                         if let placename = document.get("placename") as? String {
                             self.userPlaceNameArray.append(placename)
                         }
