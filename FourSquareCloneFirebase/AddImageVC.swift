@@ -27,6 +27,8 @@ class AddImageVC: UIViewController, UIImagePickerControllerDelegate & UINavigati
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
         imageViewAdd.addGestureRecognizer(gestureRecognizer)
         
+        //hiding keyboard when tap vc except for keyboard
+        let hidingGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         
     }
     @IBAction func nextButtonClicked(_ sender: Any) {
@@ -38,47 +40,7 @@ class AddImageVC: UIViewController, UIImagePickerControllerDelegate & UINavigati
         } else if placeAtmosphereText.text == "" {
             self.makeAlert(messageInput: "Place atmosphere cannot be empty!")
         }
-        
-        //doing nothing now. we're gonna update next segue after press save!
-        
-        /*//upload
-        else {
-            let storage = Storage.storage()
-            let storageReference = storage.reference()
-            //choosing folder if it is not existing it will create automaticilly
-            let mediaFolder = storageReference.child("photo")
-            //convert image to data, 0.5 is compression rate
-            if let data = imageViewAdd.image?.jpegData(compressionQuality: 0.5) {
-                //creating image name and uuid
-                let uuid = UUID().uuidString
-                //save as jpeg
-                let imageReference = mediaFolder.child("\(uuid).jpeg")
-                imageReference.putData(data, metadata: nil) { (metadeta, error) in
-                    if error != nil {
-                        self.makeAlert(messageInput: error?.localizedDescription ?? "Error!")
-                    } else {
-                        imageReference.downloadURL { (url, error) in
-                            if error == nil {
-                                //convert url to string
-                                let imageUrl = url?.absoluteString
-                                //database
-                                let firestoreDatabase = Firestore.firestore()
-                                var firestoreReference : DocumentReference? = nil
-                                let firestorePost = ["imageUrl" : imageUrl!, "name" : self.nameText.text!, "placetype" : self.placeTypeText.text!, "placeatmosphere" : self.placeAtmosphereText.text! ] as! [String : Any]
-                                firestoreReference = firestoreDatabase.collection("Places").addDocument(data: firestorePost, completion: { (error) in
-                                    if error != nil {
-                                        self.makeAlert(messageInput: error?.localizedDescription ?? "Error!")
-                                    } else {
-                                        //if no error goes to addmapvc
-                                        self.performSegue(withIdentifier: "toaddmapvc", sender: nil)
-                                    }
-                                })
-                            }
-                        }
-                    }
-                }
-            }
-        }*/
+        //to toaddmapvc segue
         self.performSegue(withIdentifier: "toaddmapvc", sender: nil)
     }
     
@@ -118,5 +80,8 @@ class AddImageVC: UIViewController, UIImagePickerControllerDelegate & UINavigati
         }
     }
     
-
+    //hiding keyboard objc fun
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
 }
